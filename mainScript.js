@@ -28,6 +28,7 @@ function game() {
         computerScore = 0
 
     for (let i = 0; i <= 5; ++i) {
+
         const playerSelection = prompt("Pick Rock, Paper, Scissors!   ").toLowerCase()
         const computerSelection = computerPlay()
         console.log(playerSelection)
@@ -43,9 +44,12 @@ function game() {
         } else {
             computerScore += 1
         }
+
         console.log(`Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
 
     }
+    console.clear()
+    console.log('Game over')
     console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
 
     if (playerScore == computerScore) {
