@@ -8,7 +8,7 @@ function computerPlay() {
 function playRound(player, computer) {
     console.log(`You played ${player}. The computer played ${computer}`)
     let playerWins = `${player} > ${computer}! player wins!`,
-        computerWins = `${computer} > ${player}! computer wins!`,
+        computerWins = `${computer} > ${player}! player loses!`,
         draw = `Both are ${player}. It's a draw!`
     if (player == computer) {
         return draw
@@ -23,9 +23,38 @@ function playRound(player, computer) {
     }
 }
 
+function game() {
+    let playerScore = 0,
+        computerScore = 0
 
-let playerSelection = prompt("Pick Rock, Paper, Scissors!   ").toLowerCase()
-let computerSelection = computerPlay()
-console.log(playerSelection)
-console.log(computerSelection)
-console.log(playRound(playerSelection, computerSelection))
+    for (let i = 0; i <= 5; ++i) {
+        const playerSelection = prompt("Pick Rock, Paper, Scissors!   ").toLowerCase()
+        const computerSelection = computerPlay()
+        console.log(playerSelection)
+        console.log(computerSelection)
+            // Runs for 1 round and returns the outcome to result variable
+        let result = playRound(playerSelection, computerSelection)
+        console.log(result)
+        if (result.includes('wins')) {
+            playerScore += 1
+        } else if (result.includes('draw')) {
+            computerScore += 1
+            playerScore += 1
+        } else {
+            computerScore += 1
+        }
+        console.log(`Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
+
+    }
+    console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
+
+    if (playerScore == computerScore) {
+        console.alert("Its a Tie!")
+    } else if (playerScore > computerScore) {
+        console.alert('Player Wins!')
+    } else {
+        console.alert('Player loses. Computer Bot wins!')
+    }
+}
+
+game()
