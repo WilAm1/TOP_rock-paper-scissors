@@ -49,12 +49,11 @@ function game() {
     console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
 
     if (playerScore == computerScore) {
-        console.alert("Its a Tie!")
+        alert("Its a Tie!")
     } else if (playerScore > computerScore) {
-        console.alert('Player Wins!')
+        alert('Player Wins!')
     } else {
-        console.alert('Player loses. Computer Bot wins!')
+        alert('Player loses. Computer Bot wins!')
     }
 }
-
 game()
