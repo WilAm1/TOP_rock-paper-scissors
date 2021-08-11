@@ -6,11 +6,20 @@ function computerPlay() {
 }
 
 function playRound(player, computer) {
-    let playerWins = `${player} beats ${computer}! player wins!`,
-        computerWins = `${computer} beats ${player}! computer wins!`,
+    console.log(`You played ${player}. The computer played ${computer}`)
+    let playerWins = `${player} > ${computer}! player wins!`,
+        computerWins = `${computer} > ${player}! computer wins!`,
         draw = `Both are ${player}. It's a draw!`
-    if (player == 'rock' && computer == 'paper') {
-        return
+    if (player == computer) {
+        return draw
+    } else if (player == 'rock' && computer == 'paper') {
+        return playerWins
+    } else if (player == 'paper' && computer == 'rock') {
+        return playerWins
+    } else if (player == 'scissors' && computer == 'paper') {
+        return playerWins
+    } else {
+        return computerWins
     }
 }
 
