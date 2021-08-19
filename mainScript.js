@@ -27,39 +27,44 @@ function getPlayerSelection(e) {
     return e.target.textContent.toLowerCase()
 };
 
-// function game() {
-let playerScore = 0,
-    computerScore = 0;
-
 const choices = ["rock", "paper", "scissors"];
 
-window.addEventListener('click', e => {
-    const playerSelection = e.target.textContent.toLowerCase();
-    if (!choices.includes(playerSelection)) return;
-    const computerSelection = computerPlay()
+function playGame(playerValue) {
+
+    let playerScore = 0,
+        computerScore = 0;
+    const playerSelection = playerValue;
+    const announcement = document.querySelector('.announcer');
+    const resultText = document.querySelector('.result');
+
+    const computerSelection = computerPlay();
 
     // Runs for 1 round and returns the outcome to result variable
     let result = playRound(playerSelection, computerSelection)
-    console.log(result)
+    resultText.textContent = result;
+
+    console.log(result);
     if (result.includes('wins')) {
         playerScore += 1
-    } else if (result.includes('draw')) {
+    } else
+    if (result.includes('draw')) {
         computerScore += 1
         playerScore += 1
     } else {
         computerScore += 1
     }
-
+    announcement.textContent = `Result: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
     console.log(`Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`);
+}
+
+
+
+
+
+const weapons = Array.from(document.querySelectorAll('button.weapon'));
+weapons.forEach(weapon => {
+    weapon.addEventListener('click', e => playGame(e.target.textContent));
 });
-
-
-
-// const weapons = Array.from(document.querySelectorAll('button.weapon'));
-// weapons.forEach(weapon => {
-//     weapon.addEventListener('click', getPlayerSelection);
-// });
-// const playerSelection = null;
 
 
 
