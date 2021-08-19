@@ -30,12 +30,13 @@ function getPlayerSelection(e) {
 const choices = ["rock", "paper", "scissors"];
 const announcement = document.querySelector('.announcer');
 const resultText = document.querySelector('.result');
+
 let playerScore = 0,
     computerScore = 0;
 
 function playGame(playerValue) {
 
-    const playerSelection = playerValue;
+    const playerSelection = playerValue.toLowerCase();
 
     const computerSelection = computerPlay();
 
@@ -55,29 +56,32 @@ function playGame(playerValue) {
     }
     announcement.textContent = `Result: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
     console.log(`Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`);
+
+    if (playerScore === 5 || computerScore === 5) {
+        console.clear();
+        resultText.textContent = "Game Over";
+        announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+        console.log('Game over');
+        console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
+        const titleText = document.querySelector('.title-text');
+        let finalResult = '';
+        if (playerScore == computerScore) {
+            alert("Its a Tie!");
+            finalResult = "Its a Tie!";
+        } else if (playerScore > computerScore) {
+            alert('Player Wins!');
+            finalResult = "Player Wins!!";
+
+        } else {
+            alert('Player loses. Computer Bot wins!');
+            finalResult = 'Player loses. Computer Bot wins!';
+        }
+        titleText.textContent = finalResult;
+    }
 }
-
-
-
 
 
 const weapons = Array.from(document.querySelectorAll('button.weapon'));
 weapons.forEach(weapon => {
     weapon.addEventListener('click', e => playGame(e.target.textContent));
 });
-
-
-
-// console.clear();
-// console.log('Game over');
-// console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`);
-
-// if (playerScore == computerScore) {
-//     alert("Its a Tie!");
-// } else if (playerScore > computerScore) {
-//     alert('Player Wins!');
-// } else {
-//     alert('Player loses. Computer Bot wins!');
-// }
-// }
-// game();
