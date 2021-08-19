@@ -1,3 +1,7 @@
+function getPlayerSelection(e) {
+    return e.target.textContent.toLowerCase()
+};
+
 function computerPlay() {
     // returns the random index of choices by maths.
     let choosenHandIndex = Math.floor(Math.random() * choices.length);
@@ -23,9 +27,6 @@ function playRound(player, computer) {
 }
 
 
-function getPlayerSelection(e) {
-    return e.target.textContent.toLowerCase()
-};
 
 const choices = ["rock", "paper", "scissors"];
 const announcement = document.querySelector('.announcer');
@@ -77,6 +78,7 @@ function playGame(playerValue) {
             finalResult = 'Player loses. Computer Bot wins!';
         }
         titleText.textContent = finalResult;
+        weapons.forEach(weapon => weapon.disabled = true);
     }
 }
 
