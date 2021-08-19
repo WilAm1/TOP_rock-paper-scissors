@@ -40,28 +40,59 @@ function playGame(playerValue) {
     }
     announcement.textContent = `Result: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
-    showFinalScore()
+    if (playerScore === 5 || computerScore === 5) {
+        showFinalScore()
+        playAgain()
+    }
 }
 
 function showFinalScore() {
-    if (!(playerScore === 5 || computerScore === 5)) return
     resultText.textContent = "Game Over";
     announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+
     const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
         (playerScore > computerScore) ? "Player Wins!!" : 'Player loses. Computer Bot wins!';
+
     titleText.textContent = finalResult;
     weapons.forEach(weapon => weapon.disabled = true);
 }
-const CHOICES = ["rock", "paper", "scissors"];
-const announcement = document.querySelector('.announcer');
-const resultText = document.querySelector('.result');
-const titleText = document.querySelector('.final-result');
-const playDescription = document.createElement('p');
+
+
+
+function playAgain() {
+    const restartDiv = document.createElement('div'),
+        restartP = document.createElement('p'),
+        restartBtn = document.createElement('button');
+    restartP.textContent = 'Do you want to Start Again?';
+    restartBtn.textContent = 'Press Me';
+
+    restartDiv.appendChild(restartP);
+    restartDiv.appendChild(restartBtn);
+    divAnnouncement.appendChild(restartDiv);
+
+    restartBtn.addEventListener('click', e => {
+        restartDiv.remove();
+        computerScore = 0;
+        playerScore = 0;
+        weapons.forEach(weapon => weapon.disabled = false);
+        titleText.textContent = 'Choose your weapon!';
+        resultText.textContent = '';
+        playDescription.textContent = '';
+        announcement.textContent = 'Result:';
+    });
+
+}
 
 // Scores
 let playerScore = 0,
     computerScore = 0;
 
+const CHOICES = ["rock", "paper", "scissors"];
+const titleText = document.querySelector('.final-result');
+const resultText = document.querySelector('.result');
+const divAnnouncement = document.querySelector('.announcement');
+const announcement = document.querySelector('.announcer');
+const playDescription = document.createElement('p');
 const weapons = Array.from(document.querySelectorAll('button.weapon'));
 weapons.forEach(weapon => {
     weapon.addEventListener('click', e => playGame(e.target.textContent));
