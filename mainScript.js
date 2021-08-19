@@ -1,5 +1,5 @@
 function computerPlay() {
-    let choices = ["rock", "paper", "scissors"];
+    const choices = ["rock", "paper", "scissors"];
     // returns the random index of choices by maths.
     let choosenHandIndex = Math.floor(Math.random() * choices.length);
     return choices[choosenHandIndex]
