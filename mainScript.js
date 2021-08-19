@@ -1,71 +1,49 @@
-function getPlayerSelection(e) {
-    return e.target.textContent.toLowerCase()
-};
-
 function computerPlay() {
     // returns the random index of choices by maths.
-    let choosenHandIndex = Math.floor(Math.random() * choices.length);
-    return choices[choosenHandIndex]
+    let choosenHandIndex = Math.floor(Math.random() * CHOICES.length);
+    return CHOICES[choosenHandIndex]
 }
 
-function playRound(player, computer) {
-    console.log(`You played ${player}. The computer played ${computer}`)
-    let playerWins = `${player} > ${computer}! player wins!`,
+function getResult(player, computer) {
+    const playerWins = `${player} > ${computer}! player wins!`,
         computerWins = `${computer} > ${player}! player loses!`,
         draw = `Both are ${player}. It's a draw!`;
     if (player === computer) {
         return draw
-    } else if (player === 'rock' && computer === 'paper') {
-        return playerWins
-    } else if (player === 'paper' && computer === 'rock') {
-        return playerWins
-    } else if (player === 'scissors' && computer === 'paper') {
+    } else if ((player === 'rock' && computer === 'paper') ||
+        (player === 'paper' && computer === 'rock') ||
+        (player === 'scissors' && computer === 'paper')) {
         return playerWins
     } else {
         return computerWins
     }
 }
 
-
-
-const choices = ["rock", "paper", "scissors"];
-const announcement = document.querySelector('.announcer');
-const resultText = document.querySelector('.result');
-
-let playerScore = 0,
-    computerScore = 0;
-
+// Main Game Function
 function playGame(playerValue) {
-
     const playerSelection = playerValue.toLowerCase();
-
     const computerSelection = computerPlay();
-
+    // Will 
+    const guideDiv = document.querySelector('.guide-div');
+    playDescription.textContent = `You played ${playerSelection}. The computer played ${computerSelection}`;
+    guideDiv.appendChild(playDescription);
+    console.log(`You played ${playerSelection}. The computer played ${computerSelection}`);
     // Runs for 1 round and returns the outcome to result variable
-    let result = playRound(playerSelection, computerSelection)
+    let result = getResult(playerSelection, computerSelection);
     resultText.textContent = result;
 
-    console.log(result);
     if (result.includes('wins')) {
         playerScore += 1
-    } else
-    if (result.includes('draw')) {
-        computerScore += 1
-        playerScore += 1
-    } else {
+    } else if (result.includes('loses')) {
         computerScore += 1
     }
     announcement.textContent = `Result: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
-    console.log(`Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`);
 
     if (playerScore === 5 || computerScore === 5) {
-        console.clear();
         resultText.textContent = "Game Over";
         announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
-        console.log('Game over');
-        console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`)
-        const titleText = document.querySelector('.title-text');
         let finalResult = '';
+
         if (playerScore == computerScore) {
             alert("Its a Tie!");
             finalResult = "Its a Tie!";
@@ -82,6 +60,15 @@ function playGame(playerValue) {
     }
 }
 
+const CHOICES = ["rock", "paper", "scissors"];
+const announcement = document.querySelector('.announcer');
+const resultText = document.querySelector('.result');
+const titleText = document.querySelector('.final-result');
+const playDescription = document.createElement('p');
+
+// Scores
+let playerScore = 0,
+    computerScore = 0;
 
 const weapons = Array.from(document.querySelectorAll('button.weapon'));
 weapons.forEach(weapon => {
