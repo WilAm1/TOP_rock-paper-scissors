@@ -28,14 +28,14 @@ function getPlayerSelection(e) {
 };
 
 const choices = ["rock", "paper", "scissors"];
+const announcement = document.querySelector('.announcer');
+const resultText = document.querySelector('.result');
+let playerScore = 0,
+    computerScore = 0;
 
 function playGame(playerValue) {
 
-    let playerScore = 0,
-        computerScore = 0;
     const playerSelection = playerValue;
-    const announcement = document.querySelector('.announcer');
-    const resultText = document.querySelector('.result');
 
     const computerSelection = computerPlay();
 
