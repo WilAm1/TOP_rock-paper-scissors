@@ -19,6 +19,7 @@ function getResult(player, computer) {
     }
 }
 
+
 // Main Game Function
 function playGame(playerValue) {
     const playerSelection = playerValue.toLowerCase();
@@ -39,27 +40,18 @@ function playGame(playerValue) {
     }
     announcement.textContent = `Result: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
-    if (playerScore === 5 || computerScore === 5) {
-        resultText.textContent = "Game Over";
-        announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
-        let finalResult = '';
-
-        if (playerScore == computerScore) {
-            alert("Its a Tie!");
-            finalResult = "Its a Tie!";
-        } else if (playerScore > computerScore) {
-            alert('Player Wins!');
-            finalResult = "Player Wins!!";
-
-        } else {
-            alert('Player loses. Computer Bot wins!');
-            finalResult = 'Player loses. Computer Bot wins!';
-        }
-        titleText.textContent = finalResult;
-        weapons.forEach(weapon => weapon.disabled = true);
-    }
+    showFinalScore()
 }
 
+function showFinalScore() {
+    if (!(playerScore === 5 || computerScore === 5)) return
+    resultText.textContent = "Game Over";
+    announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+    const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
+        (playerScore > computerScore) ? "Player Wins!!" : 'Player loses. Computer Bot wins!';
+    titleText.textContent = finalResult;
+    weapons.forEach(weapon => weapon.disabled = true);
+}
 const CHOICES = ["rock", "paper", "scissors"];
 const announcement = document.querySelector('.announcer');
 const resultText = document.querySelector('.result');
