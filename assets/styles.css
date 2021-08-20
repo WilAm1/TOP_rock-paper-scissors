@@ -1,8 +1,77 @@
 body {
     text-align: center;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: 'Rampart One', cursive;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: cadetblue;
+    font-size: larger;
 }
 
 .weapons {
     display: flex;
     justify-content: center;
+}
+
+
+/*  */
+
+.title {
+    width: 0 auto;
+    margin: 10vh;
+}
+
+.main-choices {
+    display: flex;
+}
+
+.guide-div {
+    text-align: left;
+}
+
+.player-div {
+    align-items: flex-end;
+}
+
+
+/* Button Images */
+
+.weapon {
+    opacity: .7;
+    height: 10rem;
+    width: 10rem;
+    font-size: 0;
+    border-radius: 50%;
+    border: solid 5px black;
+    background-size: 100%;
+}
+
+.weapon:active {
+    transform: scale(.8);
+    box-shadow: 0 3px 15px -2px;
+}
+
+.weapon:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.rock {
+    background-image: url(rock.png);
+}
+
+.paper {
+    background-image: url(paper.png);
+}
+
+.scissor {
+    background-image: url(scissors.png);
 }
