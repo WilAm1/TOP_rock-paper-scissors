@@ -1,8 +1,10 @@
-body {
+html {
     text-align: center;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     background-color: #F0D9FF;
     color: #7F7C82;
+    margin: 0;
+    padding: 0;
 }
 
 h1,
@@ -141,7 +143,6 @@ p.announcer {
     right: 2vh;
     top: 0vh;
     width: 25rem;
-    height: 40vh;
 }
 
 
@@ -154,12 +155,52 @@ p.announcer {
     ;
 }
 
-a:hover {
-    color: cadetblue;
-    font-size: larger;
+h1>a:hover {
+    text-transform: uppercase;
 }
 
 .player-div:hover,
 .computer-div:hover {
-    transform: scale(1.01);
+    transform: scale(.99);
+}
+
+
+/* Footer */
+
+.ftr {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #BFA2DB;
+}
+
+.ftr span,
+.ftr a {
+    margin: 0px;
+    padding: 0;
+    color: white;
+}
+
+.ftr a:hover {
+    font-style: italic;
+}
+
+.restart-btn {
+    width: 150px;
+    font-family: 'Press Start 2P', cursive;
+    color: #7f7c82;
+    background-color: #f3f1f5;
+    border: solid #7f7c82 2px;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.restart-btn:hover {
+    transform: scale(.94);
+}
+
+.restart-btn:active {
+    transform: scale(.8);
+    box-shadow: 0 3px 15px -1px;
 }

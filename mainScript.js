@@ -67,6 +67,7 @@ function playAgain() {
         restartBtn = document.createElement('button');
     restartP.textContent = 'Do you want to Start Again?';
     restartBtn.textContent = 'Press Me';
+    restartBtn.classList.add("restart-btn");
 
     restartDiv.appendChild(restartP);
     restartDiv.appendChild(restartBtn);
