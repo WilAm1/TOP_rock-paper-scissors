@@ -24,10 +24,12 @@ function getResult(player, computer) {
 function playGame(playerValue) {
     const playerSelection = playerValue.toLowerCase();
     const computerSelection = computerPlay();
+    const botImage = document.querySelector('.bot-image');
+    botImage.src = `assets/${computerSelection}.png`;
     // Will 
-    const guideDiv = document.querySelector('.guide-div');
+
     playDescription.textContent = `You played ${playerSelection}. The computer played ${computerSelection}`;
-    guideDiv.appendChild(playDescription);
+    divAnnouncement.insertBefore(playDescription, resultText);
     console.log(`You played ${playerSelection}. The computer played ${computerSelection}`);
     // Runs for 1 round and returns the outcome to result variable
     let result = getResult(playerSelection, computerSelection);
@@ -38,7 +40,7 @@ function playGame(playerValue) {
     } else if (result.includes('loses')) {
         computerScore += 1
     }
-    announcement.textContent = `Result: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+    announcement.textContent = `Scores: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
     if (playerScore === 5 || computerScore === 5) {
         showFinalScore()
@@ -53,7 +55,7 @@ function showFinalScore() {
     const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
         (playerScore > computerScore) ? "Player Wins!!" : 'Player loses. Computer Bot wins!';
 
-    titleText.textContent = finalResult;
+    h2Element.textContent = finalResult;
     weapons.forEach(weapon => weapon.disabled = true);
 }
 
@@ -70,15 +72,18 @@ function playAgain() {
     restartDiv.appendChild(restartBtn);
     divAnnouncement.appendChild(restartDiv);
 
-    restartBtn.addEventListener('click', e => {
+    restartBtn.addEventListener('click', () => {
+
         restartDiv.remove();
-        computerScore = 0;
-        playerScore = 0;
-        weapons.forEach(weapon => weapon.disabled = false);
-        titleText.textContent = 'Choose your weapon!';
-        resultText.textContent = '';
-        playDescription.textContent = '';
-        announcement.textContent = 'Result:';
+        window.location.reload();
+        // If we don't use location.reload function
+        // computerScore = 0;
+        // playerScore = 0;
+        // weapons.forEach(weapon => weapon.disabled = false);
+        // h2Element.textContent = 'Choose your weapon!';
+        // resultText.textContent = '';
+        // playDescription.textContent = '';
+        // announcement.textContent = 'Result:';
     });
 
 }
@@ -88,7 +93,7 @@ let playerScore = 0,
     computerScore = 0;
 
 const CHOICES = ["rock", "paper", "scissors"];
-const titleText = document.querySelector('.final-result');
+const h2Element = document.querySelector('h2');
 const resultText = document.querySelector('.result');
 const divAnnouncement = document.querySelector('.announcement');
 const announcement = document.querySelector('.announcer');
