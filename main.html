@@ -6,10 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Rampart+One&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="mainScript.js" defer></script>
 </head>
 
+
 <body>
-    <script src="mainScript.js"></script>
+    <div class="title">
+        <p class="announcer">Scores:</p>
+        <h1 class="title-text">
+            <a href="https://www.youtube.com/watch?v=9YqT6EsEvBk" target="_blank">Rock, Paper, Scissors!</a>
+        </h1>
+    </div>
+
+
+    <h2 class="final-result">Choose your weapon!</h2>
+    <div class="main-choices">
+        <div class="player-div">
+            <div class="guide-div">
+                <p class="indicator player-text">Player:</p>
+                <div class="weapons">
+                    <button class="weapon rock">Rock</button>
+                    <button class="weapon paper">Paper</button>
+                    <button class="weapon scissor">Scissors</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="computer-div">
+            <div class="computer-desc">
+                <p class="indicator computer-text">Computer: </p>
+            </div>
+            <img src="assets/bot.jpg" alt="bot-image" class="initial-img-bot bot-image">
+        </div>
+    </div>
+
+    <div class="announcement">
+        <p>Result!</p>
+        <p class="result"></p>
+
+    </div>
+    <footer class="ftr">
+        <span>Made with 💛 by <a  target="blank" href="https://github.com/WilAm1" class="profile">@WilAmI</a> </span>
+    </footer>
+
+
 </body>
+
 
 </html>

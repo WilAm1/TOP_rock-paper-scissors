@@ -1,63 +1,105 @@
 function computerPlay() {
-    const choices = ["rock", "paper", "scissors"];
     // returns the random index of choices by maths.
-    let choosenHandIndex = Math.floor(Math.random() * choices.length);
-    return choices[choosenHandIndex]
+    let choosenHandIndex = Math.floor(Math.random() * CHOICES.length);
+    return CHOICES[choosenHandIndex]
 }
 
-function playRound(player, computer) {
-    console.log(`You played ${player}. The computer played ${computer}`)
-    let playerWins = `${player} > ${computer}! player wins!`,
+function getResult(player, computer) {
+    const playerWins = `${player} > ${computer}! player wins!`,
         computerWins = `${computer} > ${player}! player loses!`,
         draw = `Both are ${player}. It's a draw!`;
-    if (player == computer) {
+    if (player === computer) {
         return draw
-    } else if (player == 'rock' && computer == 'paper') {
-        return playerWins
-    } else if (player == 'paper' && computer == 'rock') {
-        return playerWins
-    } else if (player == 'scissors' && computer == 'paper') {
+    } else if ((player === 'rock' && computer === 'paper') ||
+        (player === 'paper' && computer === 'rock') ||
+        (player === 'scissors' && computer === 'paper')) {
         return playerWins
     } else {
         return computerWins
     }
 }
 
-function game() {
-    let playerScore = 0,
-        computerScore = 0;
 
-    for (let i = 0; i <= 5; ++i) {
+// Main Game Function
+function playGame(playerValue) {
+    const playerSelection = playerValue.toLowerCase();
+    const computerSelection = computerPlay();
+    const botImage = document.querySelector('.bot-image');
+    botImage.src = `assets/${computerSelection}.png`;
+    // Will 
 
-        const playerSelection = prompt("Pick Rock, Paper, Scissors!   ").toLowerCase()
-        const computerSelection = computerPlay()
-        console.log(playerSelection)
-        console.log(computerSelection)
-            // Runs for 1 round and returns the outcome to result variable
-        let result = playRound(playerSelection, computerSelection)
-        console.log(result)
-        if (result.includes('wins')) {
-            playerScore += 1
-        } else if (result.includes('draw')) {
-            computerScore += 1
-            playerScore += 1
-        } else {
-            computerScore += 1
-        }
+    playDescription.textContent = `You played ${playerSelection}. The computer played ${computerSelection}`;
+    divAnnouncement.insertBefore(playDescription, resultText);
+    console.log(`You played ${playerSelection}. The computer played ${computerSelection}`);
+    // Runs for 1 round and returns the outcome to result variable
+    let result = getResult(playerSelection, computerSelection);
+    resultText.textContent = result;
 
-        console.log(`Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`);
-
+    if (result.includes('wins')) {
+        playerScore += 1
+    } else if (result.includes('loses')) {
+        computerScore += 1
     }
-    console.clear();
-    console.log('Game over');
-    console.log(`Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`);
+    announcement.textContent = `Scores: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
-    if (playerScore == computerScore) {
-        alert("Its a Tie!");
-    } else if (playerScore > computerScore) {
-        alert('Player Wins!');
-    } else {
-        alert('Player loses. Computer Bot wins!');
+    if (playerScore === 5 || computerScore === 5) {
+        showFinalScore()
+        playAgain()
     }
 }
-game();
+
+function showFinalScore() {
+    resultText.textContent = "Game Over";
+    announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+
+    const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
+        (playerScore > computerScore) ? "Player Wins!!" : 'Player loses. Computer Bot wins!';
+
+    h2Element.textContent = finalResult;
+    weapons.forEach(weapon => weapon.disabled = true);
+}
+
+
+
+function playAgain() {
+    const restartDiv = document.createElement('div'),
+        restartP = document.createElement('p'),
+        restartBtn = document.createElement('button');
+    restartP.textContent = 'Do you want to Start Again?';
+    restartBtn.textContent = 'Press Me';
+    restartBtn.classList.add("restart-btn");
+
+    restartDiv.appendChild(restartP);
+    restartDiv.appendChild(restartBtn);
+    divAnnouncement.appendChild(restartDiv);
+
+    restartBtn.addEventListener('click', () => {
+
+        restartDiv.remove();
+        window.location.reload();
+        // If we don't use location.reload function
+        // computerScore = 0;
+        // playerScore = 0;
+        // weapons.forEach(weapon => weapon.disabled = false);
+        // h2Element.textContent = 'Choose your weapon!';
+        // resultText.textContent = '';
+        // playDescription.textContent = '';
+        // announcement.textContent = 'Result:';
+    });
+
+}
+
+// Scores
+let playerScore = 0,
+    computerScore = 0;
+
+const CHOICES = ["rock", "paper", "scissors"];
+const h2Element = document.querySelector('h2');
+const resultText = document.querySelector('.result');
+const divAnnouncement = document.querySelector('.announcement');
+const announcement = document.querySelector('.announcer');
+const playDescription = document.createElement('p');
+const weapons = Array.from(document.querySelectorAll('button.weapon'));
+weapons.forEach(weapon => {
+    weapon.addEventListener('click', e => playGame(e.target.textContent));
+});

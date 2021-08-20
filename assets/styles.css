@@ -1,0 +1,206 @@
+html {
+    text-align: center;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    background-color: #F0D9FF;
+    color: #7F7C82;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+a {
+    font-stretch: wider;
+    color: #7F7C82;
+}
+
+h1,
+h3,
+.announcer {
+    font-family: 'Rampart One', cursive;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.weapons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+/*  */
+
+.title {
+    width: 0 auto;
+    margin: 10vh;
+}
+
+.main-choices {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10vh;
+}
+
+.indicator {
+    font-size: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    color: #7F7C82;
+}
+
+
+/* Player and Bot divs */
+
+.player-div,
+.computer-div {
+    background-color: #F3F1F5;
+    box-sizing: border-box;
+    width: 40%;
+    padding: 5px;
+    border-radius: 5rem;
+    border: solid #7F7C82 5px;
+}
+
+.announcer,
+.final-result,
+.announcement {
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid white 5px;
+    border-radius: 20px;
+    color: #F3F1F5;
+    margin: 1rem;
+    background-color: #BFA2DB;
+    box-sizing: border-box;
+}
+
+
+/* Button Images */
+
+.weapon,
+.initial-img-bot,
+.bot-img {
+    opacity: .7;
+    height: 10rem;
+    width: 10rem;
+    font-size: 0;
+    border-radius: 50%;
+    background-size: 100%;
+    border: solid #7F7C82 5px;
+}
+
+.weapon:hover {
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.09);
+}
+
+.weapon:active {
+    transform: scale(.9);
+    box-shadow: 0 3px 15px -2px;
+}
+
+.rock {
+    background-image: url(rock.png);
+}
+
+.paper {
+    background-image: url(paper.png);
+}
+
+.scissor {
+    background-image: url(scissors.png);
+}
+
+
+/* Bot */
+
+.initial-img-bot,
+.bot-img {
+    opacity: 1;
+}
+
+
+/* Sticky */
+
+p.announcer {
+    position: fixed;
+    top: 10vh;
+    left: 5vw;
+    width: 20rem;
+    box-sizing: border-box;
+}
+
+.final-result {
+    width: 30vw;
+    margin: 1rem auto;
+}
+
+.announcement {
+    position: fixed;
+    padding: 5px;
+    right: 2vh;
+    top: 0vh;
+    width: 25rem;
+}
+
+
+/* Hovers */
+
+.announcer:hover,
+.final-result:hover,
+.announcement:hover {
+    transform: scale(1.1);
+    ;
+}
+
+h1>a:hover {
+    text-transform: uppercase;
+}
+
+.player-div:hover,
+.computer-div:hover {
+    transform: scale(.99);
+}
+
+
+/* Footer */
+
+.ftr {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #BFA2DB;
+}
+
+.ftr span,
+.ftr a {
+    margin: 0px;
+    padding: 0;
+    color: white;
+}
+
+.ftr a:hover {
+    font-style: italic;
+}
+
+.restart-btn {
+    width: 150px;
+    font-family: 'Press Start 2P', cursive;
+    color: #7f7c82;
+    background-color: #f3f1f5;
+    border: solid #7f7c82 2px;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.restart-btn:hover {
+    transform: scale(.94);
+}
+
+.restart-btn:active {
+    transform: scale(.8);
+    box-shadow: 0 3px 15px -1px;
+}
