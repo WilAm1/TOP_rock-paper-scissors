@@ -3,8 +3,13 @@ body {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
-h1 {
+h1,
+h3 {
     font-family: 'Rampart One', cursive;
+}
+
+h3 {
+    font-size: 1.5rem;
 }
 
 a {
@@ -31,15 +36,14 @@ a:hover {
 
 .main-choices {
     display: flex;
+    justify-content: space-around;
 }
 
-.guide-div {
-    text-align: left;
-}
 
-.player-div {
-    align-items: flex-end;
-}
+/* .guide-div {
+    text-align: center;
+    padding: 1rem 0;
+} */
 
 
 /* Button Images */
