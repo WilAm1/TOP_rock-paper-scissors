@@ -10,7 +10,7 @@ function getResult(player, computer) {
         draw = `Both are ${player}. It's a draw!`;
     if (player === computer) {
         return draw
-    } else if ((player === 'rock' && computer === 'paper') ||
+    } else if ((player === 'rock' && computer === 'scissors') ||
         (player === 'paper' && computer === 'rock') ||
         (player === 'scissors' && computer === 'paper')) {
         return playerWins
