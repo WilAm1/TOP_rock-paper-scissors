@@ -26,11 +26,13 @@ h3 {
 .weapons {
     display: flex;
     justify-content: space-evenly;
-    background-color: #BFA2DB;
+    background-color: #f3f1f5;
     border: solid 5px #7f7c82;
-    width: 70%;
-    margin: 0 auto;
-    border-radius: 25%;
+    width: 50%;
+    margin: 10px auto;
+    border-radius: 100px;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 
@@ -85,7 +87,8 @@ h3 {
 
 .weapon,
 .initial-img-bot,
-.bot-img {
+.bot-img,
+.player-image {
     opacity: .7;
     height: 8rem;
     width: 8rem;

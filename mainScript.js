@@ -25,6 +25,8 @@ function playGame(playerValue) {
     const playerSelection = playerValue.toLowerCase();
     const computerSelection = computerPlay();
     const botImage = document.querySelector('.bot-image');
+    const playerImage = document.querySelector('.player-image');
+    playerImage.src = `assets/${playerSelection}.png`;
     botImage.src = `assets/${computerSelection}.png`;
     // Will 
 
@@ -49,14 +51,13 @@ function playGame(playerValue) {
 }
 
 function showFinalScore() {
+    weapons.forEach(weapon => weapon.disabled = true);
     resultText.textContent = "Game Over";
     announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
     const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
         (playerScore > computerScore) ? "Player Wins!!" : 'Player loses. Computer Bot wins!';
-
-    h2Element.textContent = finalResult;
-    weapons.forEach(weapon => weapon.disabled = true);
+    gameResultElement.textContent = finalResult;
 }
 
 
@@ -81,7 +82,7 @@ function playAgain() {
         // computerScore = 0;
         // playerScore = 0;
         // weapons.forEach(weapon => weapon.disabled = false);
-        // h2Element.textContent = 'Choose your weapon!';
+        // gameResultElement.textContent = 'Choose your weapon!';
         // resultText.textContent = '';
         // playDescription.textContent = '';
         // announcement.textContent = 'Result:';
@@ -94,7 +95,7 @@ let playerScore = 0,
     computerScore = 0;
 
 const CHOICES = ["rock", "paper", "scissors"];
-const h2Element = document.querySelector('h2');
+const gameResultElement = document.querySelector('.game-result');
 const resultText = document.querySelector('.result');
 const divAnnouncement = document.querySelector('.announcement');
 const announcement = document.querySelector('.announcer');
