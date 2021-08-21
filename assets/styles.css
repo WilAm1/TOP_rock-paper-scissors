@@ -125,7 +125,8 @@ h3 {
 /* Bot */
 
 .initial-img-bot,
-.bot-img {
+.bot-img,
+.initial-img-player {
     opacity: 1;
 }
 
