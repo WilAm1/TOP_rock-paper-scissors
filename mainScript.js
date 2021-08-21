@@ -42,7 +42,7 @@ function playGame(playerValue) {
     } else if (result.includes('loses')) {
         computerScore += 1
     }
-    announcement.textContent = `Scores: Player Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+    pScores.textContent = `Player Score: ${playerScore}/5  Computer Score: ${computerScore}/5`;
 
     if (playerScore === 5 || computerScore === 5) {
         showFinalScore()
@@ -53,7 +53,7 @@ function playGame(playerValue) {
 function showFinalScore() {
     weapons.forEach(weapon => weapon.disabled = true);
     resultText.textContent = "Game Over";
-    announcement.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
+    pScores.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
     const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
         (playerScore > computerScore) ? "Player Wins!!" : 'Player loses. Computer Bot wins!';
@@ -99,6 +99,7 @@ const gameResultElement = document.querySelector('.game-result');
 const resultText = document.querySelector('.result');
 const divAnnouncement = document.querySelector('.announcement');
 const announcement = document.querySelector('.announcer');
+const pScores = document.querySelector('.scores');
 const playDescription = document.createElement('p');
 const weapons = Array.from(document.querySelectorAll('button.weapon'));
 weapons.forEach(weapon => {
