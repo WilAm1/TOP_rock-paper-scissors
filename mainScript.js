@@ -5,6 +5,7 @@ function computerPlay() {
 }
 
 function getResult(player, computer) {
+    // Comparison of players
     const playerWins = `${player} > ${computer}! player wins!`,
         computerWins = `${computer} > ${player}! player loses!`,
         draw = `Both are ${player}. It's a draw!`;
@@ -26,33 +27,37 @@ function playGame(playerValue) {
     const computerSelection = computerPlay();
     const botImage = document.querySelector('.bot-image');
     const playerImage = document.querySelector('.player-image');
+    // Changes the image source of both hands
     playerImage.src = `assets/${playerSelection}.png`;
     botImage.src = `assets/${computerSelection}.png`;
-    // Will 
 
+    // Will change the playdescription text
     playDescription.textContent = `You played ${playerSelection}. The computer played ${computerSelection}`;
     divAnnouncement.insertBefore(playDescription, resultText);
-    console.log(`You played ${playerSelection}. The computer played ${computerSelection}`);
     // Runs for 1 round and returns the outcome to result variable
     let result = getResult(playerSelection, computerSelection);
     resultText.textContent = result;
-
+    // Will increment scores
     if (result.includes('wins')) {
         playerScore += 1
     } else if (result.includes('loses')) {
         computerScore += 1
     }
     pScores.textContent = `Player Score: ${playerScore}/5  Computer Score: ${computerScore}/5`;
-
+    // Run if one of scores reach 5.
     if (playerScore === 5 || computerScore === 5) {
         showFinalScore()
         playAgain()
     }
 }
 
+
 function showFinalScore() {
+    // Turns off the button function.
     weapons.forEach(weapon => weapon.disabled = true);
     resultText.textContent = "Game Over";
+    // Displays the final results
+
     pScores.textContent = `Final Scores!\nPlayer Score: ${playerScore}/5\nComputer Score: ${computerScore}/5`;
 
     const finalResult = (playerScore == computerScore) ? "Its a Tie!" :
@@ -63,6 +68,7 @@ function showFinalScore() {
 
 
 function playAgain() {
+    // Creates a Div that will display if they want to continue playing
     const restartDiv = document.createElement('div'),
         restartP = document.createElement('p'),
         restartBtn = document.createElement('button');
@@ -75,7 +81,7 @@ function playAgain() {
     divAnnouncement.appendChild(restartDiv);
 
     restartBtn.addEventListener('click', () => {
-
+        // Reloads the page.
         restartDiv.remove();
         window.location.reload();
         // If we don't use location.reload function
@@ -101,6 +107,8 @@ const divAnnouncement = document.querySelector('.announcement');
 const announcement = document.querySelector('.announcer');
 const pScores = document.querySelector('.scores');
 const playDescription = document.createElement('p');
+
+// Adds event listener to every buttons in the weapon div.
 const weapons = Array.from(document.querySelectorAll('button.weapon'));
 weapons.forEach(weapon => {
     weapon.addEventListener('click', e => playGame(e.target.textContent));
